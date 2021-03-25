@@ -197,6 +197,7 @@ public class ProcesamientoDeImagenes extends javax.swing.JFrame {
         int Seleccion = Archivo.showOpenDialog(null);
         if(Seleccion == JFileChooser.APPROVE_OPTION){
             try {
+                //En esta línea se obptiene el archivo seleccionado y se asigna a un objeto tipo File.
                 File ArchivoImagen = Archivo.getSelectedFile();
                 imagen.setBuferDeImagenOriginal(ImageIO.read(ArchivoImagen));
                 if(imagen.getBuferDeImagenOriginal() != null){
