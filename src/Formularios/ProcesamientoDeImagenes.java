@@ -23,8 +23,10 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class ProcesamientoDeImagenes extends javax.swing.JFrame {
+
     private Imagen imagen;
     private ServicioPDI servicio;
+
     /**
      * Creates new form ProcesamientoDeImagenes
      */
@@ -48,7 +50,7 @@ public class ProcesamientoDeImagenes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         ImagenOriginal = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        ImagenResultante = new javax.swing.JLabel();
+        ImagenResultanteH = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         TituloFuncion = new javax.swing.JLabel();
         reguladorIntensidad = new javax.swing.JSlider();
@@ -61,6 +63,13 @@ public class ProcesamientoDeImagenes extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,7 +82,7 @@ public class ProcesamientoDeImagenes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ImagenOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,7 +91,7 @@ public class ProcesamientoDeImagenes extends javax.swing.JFrame {
                 .addComponent(ImagenOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Imagen Resultante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Imagen Resultante Horizontal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -90,14 +99,14 @@ public class ProcesamientoDeImagenes extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ImagenResultante, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(ImagenResultanteH, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ImagenResultante, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(ImagenResultanteH, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jLabel1.setFont(new java.awt.Font("Vivaldi", 1, 24)); // NOI18N
@@ -147,6 +156,54 @@ public class ProcesamientoDeImagenes extends javax.swing.JFrame {
         jMenu3.setText("Propiedades");
         jMenuBar1.add(jMenu3);
 
+        jMenu4.setText("Filtros");
+
+        jMenu5.setText("Detección de Bordes");
+
+        jMenuItem4.setText("Método Horizontal");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem4);
+
+        jMenuItem5.setText("Método Vertical");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem5);
+
+        jMenuItem8.setText("Método Mixto");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem8);
+
+        jMenuItem6.setText("Método Diagonal");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem6);
+
+        jMenuItem7.setText("Método 4P");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem7);
+
+        jMenu4.add(jMenu5);
+
+        jMenuBar1.add(jMenu4);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,13 +211,12 @@ public class ProcesamientoDeImagenes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(39, 39, 39))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(176, 176, 176)
                         .addComponent(jLabel1))
@@ -195,12 +251,12 @@ public class ProcesamientoDeImagenes extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Seleccione una imagen desde su computador...");
         JFileChooser Archivo = new JFileChooser();
         int Seleccion = Archivo.showOpenDialog(null);
-        if(Seleccion == JFileChooser.APPROVE_OPTION){
+        if (Seleccion == JFileChooser.APPROVE_OPTION) {
             try {
                 //En esta línea se obptiene el archivo seleccionado y se asigna a un objeto tipo File.
                 File ArchivoImagen = Archivo.getSelectedFile();
                 imagen.setBuferDeImagenOriginal(ImageIO.read(ArchivoImagen));
-                if(imagen.getBuferDeImagenOriginal() != null){
+                if (imagen.getBuferDeImagenOriginal() != null) {
                     ImagenOriginal.setText("");
                     ImagenOriginal.setIcon(null);
                     ImagenOriginal.setIcon(new ImageIcon(imagen.getBuferDeImagenOriginal()));
@@ -209,7 +265,7 @@ public class ProcesamientoDeImagenes extends javax.swing.JFrame {
                 }
             } catch (IOException ex) {
                 Logger.getLogger(ProcesamientoDeImagenes.class.getName()).log(Level.SEVERE, null, ex);
-            }   
+            }
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -219,10 +275,32 @@ public class ProcesamientoDeImagenes extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void reguladorIntensidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reguladorIntensidadKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            ImagenResultante.setIcon(new ImageIcon(servicio.AlterarBrillo(reguladorIntensidad.getValue())));
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ImagenResultanteH.setIcon(new ImageIcon(servicio.AlterarBrillo(reguladorIntensidad.getValue())));
         }
     }//GEN-LAST:event_reguladorIntensidadKeyPressed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        ImagenResultanteH.setIcon(new ImageIcon(servicio.DeteccionBordeMetodoHorizontal()));
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        ImagenResultanteH.setIcon(new ImageIcon(servicio.DeteccionBordeMetodoVertical()));
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        ImagenResultanteH.setIcon(new ImageIcon(servicio.DeteccionBordeMixto()));
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        ImagenResultanteH.setIcon(new ImageIcon(servicio.DeteccionBordeMetodoDiagonal()));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        ImagenResultanteH.setIcon(new ImageIcon(servicio.DeteccionBorde4P()));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -261,21 +339,28 @@ public class ProcesamientoDeImagenes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ImagenOriginal;
-    private javax.swing.JLabel ImagenOriginal2;
-    private javax.swing.JLabel ImagenResultante;
+    private javax.swing.JLabel ImagenResultante1;
+    private javax.swing.JLabel ImagenResultanteH;
     private javax.swing.JMenu MenuIntensidad;
     private javax.swing.JLabel TituloFuncion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSlider reguladorIntensidad;
