@@ -8,6 +8,8 @@ package ServiciosProcesamientoImagen;
 import Dominios.Imagen;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 
 /**
  *
@@ -28,7 +30,7 @@ public class ServicioPDI extends Imagen {
         setTamañoFilas(imagen.getBuferDeImagenOriginal().getHeight());
 
         //Inicialización de la imagen
-        BuferImagenReemplazado = _imagen.getBuferDeImagenOriginal();
+        BuferImagenReemplazado = deepCopy(_imagen.getBuferDeImagenOriginal());
         CanalRojo = new int[getTamañoFilas()][getTamañoColumnas()];
         CanalVerde = new int[getTamañoFilas()][getTamañoColumnas()];
         CanalAzul = new int[getTamañoFilas()][getTamañoColumnas()];
@@ -149,7 +151,7 @@ public class ServicioPDI extends Imagen {
     }
 
     public BufferedImage DeteccionBorde4P() {
-        
+
         for (y = 1; y < getTamañoFilas() - 1; y++) {
             for (x = 1; x < getTamañoColumnas() - 1; x++) {
                 int PixelRojo = Math.abs(CanalRojo[y - 1][x] + CanalRojo[y][x - 1] + CanalRojo[y + 1][x] + CanalRojo[y][x + 1] - 4 * CanalRojo[y][x]);
@@ -191,5 +193,37 @@ public class ServicioPDI extends Imagen {
         } else {
             return b;
         }
+    }
+
+    public BufferedImage ConvertirEnEscalaDeGrises() {
+        for (y = 0; y < getTamañoFilas(); y++) {
+            for (x = 0; x < getTamañoColumnas(); x++) {
+                int PromedioPixeles = (CanalRojo[y][x] + CanalVerde[y][x] + CanalAzul[y][x]) / 3;
+
+                BuferImagenReemplazado.setRGB(x, y, new Color(PromedioPixeles, PromedioPixeles, PromedioPixeles).getRGB());
+            }
+        }
+        return BuferImagenReemplazado;
+    }
+
+    static BufferedImage deepCopy(BufferedImage bi) {
+        ColorModel cm = bi.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = bi.copyData(null);
+        return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+    }
+
+    public BufferedImage ConvertirImagenBinaria(int Umbral) {
+        for (y = 0; y < getTamañoFilas(); y++) {
+            for (x = 0; x < getTamañoColumnas(); x++) {
+                int PromedioPixeles = (CanalRojo[y][x] + CanalVerde[y][x] + CanalAzul[y][x]) / 3;
+                if (PromedioPixeles < Umbral) {
+                    BuferImagenReemplazado.setRGB(x, y, new Color(0, 0, 0).getRGB());
+                } else {
+                    BuferImagenReemplazado.setRGB(x, y, new Color(255, 255, 255).getRGB());
+                }
+            }
+        }
+        return BuferImagenReemplazado;
     }
 }
